@@ -3,16 +3,9 @@ import './App.css';
 import axios from 'axios';
 import CheckboxContainer from './components/CheckboxContainer';
 import CreatableSelect from "react-select/creatable";
-import { RecipeListItem } from './components/RecipeListItem';
 import { RecipeList } from './components/RecipeList';
-import styled from 'styled-components'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import CardImg from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import CardDeck from 'react-bootstrap/CardDeck';
-
 
 
 interface Ingredient {
@@ -23,7 +16,8 @@ interface Ingredient {
 interface Recipe {
   name: string,
   picture: string,
-  ingredients: Array<String>
+  ingredients: Array<String>,
+  url: string
 }
 
 interface MyState {
@@ -88,7 +82,8 @@ class App extends React.Component{
           let obj: Recipe = {
             name: res.label,
             picture: res.image,
-            ingredients: res.ingredientLines
+            ingredients: res.ingredientLines,
+            url: res.url
           }
           return obj;
         })

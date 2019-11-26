@@ -4,40 +4,39 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import CardImg from 'react-bootstrap/Card';
-
 
 
 interface RecipeListItemProps {
     recipe: {
         name: string,
-        picture: string;
-        ingredients: Array<String>;
+        picture: string,
+        ingredients: Array<String>,
+        url: string
     }
 }
 
-let RecipeListWrapper = styled.li`
-    font-size: 1.5em;
-    text-align: center;
-    color: palevioletred;
-    background: white;
-  `;
-
-
+// let RecipeListWrapper = styled.li`
+//     font-size: 1.5em;
+//     text-align: center;
+//     color: palevioletred;
+//     background: white;
+//   `;
 
 
 export const RecipeListItem: React.FC<RecipeListItemProps> = ({ recipe }) => {
 
-    return <Card style={{ width: '18rem' }}>
+    return <Card style={{ width: "28rem", opacity: "0.9", marginTop: "3%", 
+    display: "inline-block" }}>
     <Card.Body>
         <Card.Img variant="top" src={recipe.picture} />
-        <Card.Title>{recipe.name}</Card.Title>
-        {recipe.ingredients.map(ing => {
-            return <li>{ing}</li>
-        })}
-       <Button variant="primary">Add to shopping cart</Button>
-       <Button variant="primary">Add to favourites</Button>
+        <br></br>
+        <Card.Title style={{marginTop: "2%"}}>{recipe.name}</Card.Title>
+        <a href={recipe.url} style={{textDecoration: "none"}}>See the recipe</a>
+        <br></br>
+        <br></br>
+       <Button variant="light" style={{float: "left", marginLeft: "20%", marginBottom: "2%"}}>
+            <span role="img">🛒</span></Button>
+       <Button variant="light" style={{float: "right", marginRight: "20%", marginBottom: "2%"}}>❤️</Button>
     </Card.Body>
-
     </Card>;
 };
