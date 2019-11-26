@@ -5,6 +5,7 @@ import CheckboxContainer from './components/CheckboxContainer';
 import CreatableSelect from "react-select/creatable";
 import { RecipeListItem } from './components/RecipeListItem';
 import { RecipeList } from './components/RecipeList';
+import styled from 'styled-components'; 
 
 
 interface Ingredient {
