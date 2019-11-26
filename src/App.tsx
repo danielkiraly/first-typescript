@@ -6,6 +6,13 @@ import CreatableSelect from "react-select/creatable";
 import { RecipeListItem } from './components/RecipeListItem';
 import { RecipeList } from './components/RecipeList';
 import styled from 'styled-components'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import CardImg from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import CardDeck from 'react-bootstrap/CardDeck';
+
 
 
 interface Ingredient {
@@ -130,7 +137,9 @@ class App extends React.Component{
                       onChange={this.handleChange.bind(this)}
                       />
           <CheckboxContainer doIt={this.doItInApp}/>
+          <CardDeck>
           <RecipeList recipes={this.state.recipes}/>
+          </CardDeck>
       </div>
     );
   }

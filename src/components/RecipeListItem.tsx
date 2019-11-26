@@ -1,5 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import CardImg from 'react-bootstrap/Card';
+
+
 
 interface RecipeListItemProps {
     recipe: {
@@ -17,6 +24,18 @@ let RecipeListWrapper = styled.li`
   `;
 
 
+
+
 export const RecipeListItem: React.FC<RecipeListItemProps> = ({ recipe }) => {
-    return <RecipeListWrapper>{recipe.name}</RecipeListWrapper>;
+
+    return <Card style={{ width: '18rem' }}>
+    <Card.Body>
+        <Card.Img variant="top" src={recipe.picture} />
+        <Card.Title>{recipe.name}</Card.Title>
+            ORBÁN A KIRÁLY
+       <Button variant="primary">Add to shopping cart</Button>
+       <Button variant="primary">Add to favourites</Button>
+    </Card.Body>
+
+    </Card>;
 };
