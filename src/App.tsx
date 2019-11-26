@@ -46,33 +46,41 @@ class App extends React.Component{
     ]
   };
 
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(results => {
-        if (results.data !== undefined) {
-        let persons = results.data.map( (res: { name: string; }) => { return { label: res.name, value: res.name}})
-        this.setState({ persons });
-      }
-      })
-  }
+  // componentDidMount() {
+  //   axios.get('https://jsonplaceholder.typicode.com/users')
+  //     .then(results => {
+  //       if (results.data !== undefined) {
+  //       let persons = results.data.map( (res: { name: string; }) => { return { label: res.name, value: res.name}})
+  //       this.setState({ persons });
+  //     }
+  //     })
+  // }
 
   componentDidUpdate(){
-    axios({
-      method: 'post',
-      url: 'http://localhost:8080/search',
-      data: {
-        q: this.state.selectedIngredients,
-        diet: this.state.selectedDiets,
-        health: this.state.selectedHealth
-      }
-    })
-    .then((response) => {
-
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+    let healthToSend;
+    let dietsToSend;
+    if(this.state.selectedHealth.length > 0){
+      healthToSend = this.state.selectedHealth;
+    }
+    if(this.state.selectedDiets.length > 0){
+      dietsToSend = this.state.selectedDiets;
+    }
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/search',
+        data: {
+          q: this.state.selectedIngredients,
+          diet: dietsToSend,
+          health: healthToSend
+        }
+      })
+      .then((response) => {
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+  
 
   handleChange = (selectedItem: { map: (arg0: (r: any) => any) => { join: (arg0: string) => void; }; } | null) => {
     if(selectedItem !== null){
