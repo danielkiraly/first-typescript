@@ -29,11 +29,6 @@ class CheckboxContainer extends React.Component<CheckboxContainerProps, CheckBox
       key: 'checkBox1',
         label: 'Check Box 1'},
     {
-      name: 'high protein',
-      key: 'checkBox2',
-      label: 'Check Box 2',
-    },
-    {
       name: 'low-fat',
       key: 'checkBox3',
       label: 'Check Box 3',
