@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import CheckboxContainer from './components/CheckboxContainer';
 import CreatableSelect from "react-select/creatable";
+import { RecipeListItem } from './components/RecipeListItem';
+import { RecipeList } from './components/RecipeList';
 
 
 interface Ingredient {
@@ -10,18 +12,26 @@ interface Ingredient {
   value: string
 }
 
+interface Recipe {
+  picture: string,
+  ingredients: string
+}
+
 interface MyState {
   selectedDiets: string[],
   selectedHealth: string[],
   selectedIngredients: string[],
-  ingredients: Array<Ingredient>
+  ingredients: Array<Ingredient>,
+  recipes: Array<Recipe>
 };
+
 
 class App extends React.Component{
   state: MyState = {
     selectedDiets: [],
     selectedHealth: [],
     selectedIngredients: [],
+    recipes: [],
     ingredients: [
       {label: "chicken", value: "chicken"},
       {label: "bean", value: "bean"},
@@ -57,6 +67,7 @@ class App extends React.Component{
       }
     })
     .then((response) => {
+
       console.log(response);
     }, (error) => {
       console.log(error);
@@ -100,6 +111,7 @@ class App extends React.Component{
                       onChange={this.handleChange.bind(this)}
                       />
           <CheckboxContainer doIt={this.doItInApp}/>
+          <RecipeList recipes={this.state.recipes}/>
       </div>
     );
   }
