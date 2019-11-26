@@ -3,6 +3,7 @@ import { RecipeListItem } from './RecipeListItem';
 
 
 interface Recipe {
+    name: string,
     picture: string,
     ingredients: string
 };

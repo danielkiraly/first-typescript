@@ -13,6 +13,7 @@ interface Ingredient {
 }
 
 interface Recipe {
+  name: string,
   picture: string,
   ingredients: string
 }
@@ -75,6 +76,15 @@ class App extends React.Component{
         }
       })
       .then((response) => {
+        let recipes  = response.data.map((res: any) => {
+          let obj: Recipe = {
+            name: res.label,
+            picture: res.image,
+            ingredients: res.ingredients
+          }
+          return obj;
+        })
+        this.setState({recipes : recipes})
         console.log(response);
       }, (error) => {
         console.log(error);
