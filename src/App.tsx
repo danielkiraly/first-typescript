@@ -23,7 +23,7 @@ interface Ingredient {
 interface Recipe {
   name: string,
   picture: string,
-  ingredients: string
+  ingredients: Array<String>
 }
 
 interface MyState {
@@ -88,12 +88,11 @@ class App extends React.Component{
           let obj: Recipe = {
             name: res.label,
             picture: res.image,
-            ingredients: res.ingredients
+            ingredients: res.ingredientLines
           }
           return obj;
         })
         this.setState({recipes : recipes})
-        console.log(response);
       }, (error) => {
         console.log(error);
       });
@@ -104,7 +103,6 @@ class App extends React.Component{
     if(selectedItem !== null){
       let list = selectedItem.map(r => r.value).join('&');
       this.setState({selectedIngredients: list}, () => {
-        // console.log(this.state.selectedIngredients)
       });
     }
   }
@@ -125,7 +123,6 @@ class App extends React.Component{
     let resultHealth = selectedHealthList.map(r => r).join('&');
     this.setState({selectedDiets: resultDiets});
     this.setState({selectedHealth: resultHealth});
-    console.log(this.state.selectedDiets);
   }
 
   render(){

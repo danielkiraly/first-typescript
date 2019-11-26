@@ -5,7 +5,7 @@ import { unlinkSync } from 'fs';
 interface Recipe {
     name: string,
     picture: string,
-    ingredients: string
+    ingredients: Array<String>
 };
 
 interface RecipeListProp {

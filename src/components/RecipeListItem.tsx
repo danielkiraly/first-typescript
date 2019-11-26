@@ -12,7 +12,7 @@ interface RecipeListItemProps {
     recipe: {
         name: string,
         picture: string;
-        ingredients: string;
+        ingredients: Array<String>;
     }
 }
 
@@ -32,7 +32,9 @@ export const RecipeListItem: React.FC<RecipeListItemProps> = ({ recipe }) => {
     <Card.Body>
         <Card.Img variant="top" src={recipe.picture} />
         <Card.Title>{recipe.name}</Card.Title>
-            ORBÁN A KIRÁLY
+        {recipe.ingredients.map(ing => {
+            return <li>{ing}</li>
+        })}
        <Button variant="primary">Add to shopping cart</Button>
        <Button variant="primary">Add to favourites</Button>
     </Card.Body>
