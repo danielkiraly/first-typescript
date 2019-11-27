@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import checkboxes from '../data/Checkboxes';
 import Checkbox from './Checkbox'; 
 
 

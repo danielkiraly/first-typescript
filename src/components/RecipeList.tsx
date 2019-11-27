@@ -1,11 +1,11 @@
 import React from 'react';
 import { RecipeListItem } from './RecipeListItem';
-import { unlinkSync } from 'fs';
 
 interface Recipe {
     name: string,
     picture: string,
-    ingredients: Array<String>
+    ingredients: Array<String>,
+    url: string
 };
 
 interface RecipeListProp {
@@ -14,7 +14,7 @@ interface RecipeListProp {
 
 
 export const RecipeList: React.FC<RecipeListProp> = ({ recipes }) => {
-    return <li>{recipes.map(recipe => {
-        return <RecipeListItem key={recipe.name} recipe={recipe}/>
-    })}</li>
+    return <ul style={{textAlign: "center"}}>{recipes.map(recipe => {
+        return <RecipeListItem recipe={recipe}/>
+    })}</ul>
 }
