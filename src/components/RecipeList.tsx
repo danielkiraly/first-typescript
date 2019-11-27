@@ -14,7 +14,7 @@ interface RecipeListProp {
 
 
 export const RecipeList: React.FC<RecipeListProp> = ({ recipes }) => {
-    return <ul>{recipes.map(recipe => {
-        return <RecipeListItem recipe={recipe}/>
-    })}</ul>
+    return <li>{recipes.map(recipe => {
+        return <RecipeListItem key={recipe.name} recipe={recipe}/>
+    })}</li>
 }

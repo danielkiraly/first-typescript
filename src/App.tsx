@@ -135,7 +135,7 @@ class App extends React.Component{
                       />
           <CheckboxContainer doIt={this.doItInApp}/>
           <CardDeck>
-          <RecipeList recipes={this.state.recipes}/>
+            <RecipeList recipes={this.state.recipes}/>
           </CardDeck>
       </div>
     );

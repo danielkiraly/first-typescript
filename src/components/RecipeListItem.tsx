@@ -16,6 +16,7 @@ interface RecipeListItemProps {
     }
 }
 
+
 let RecipeListWrapper = styled.li`
     font-size: 1.5em;
     text-align: center;
@@ -28,15 +29,18 @@ let RecipeListWrapper = styled.li`
 
 export const RecipeListItem: React.FC<RecipeListItemProps> = ({ recipe }) => {
 
-    return <Card style={{ width: '18rem' }}>
+
+    return <Card style={{ width: '18rem'}}>
     <Card.Body>
         <Card.Img variant="top" src={recipe.picture} />
         <Card.Title>{recipe.name}</Card.Title>
         {recipe.ingredients.map(ing => {
-            return <li>{ing}</li>
+            return<li key={ing.toString()}> 
+                {ing}
+                </li>
         })}
        <Button variant="primary">Add to shopping cart</Button>
-       <Button variant="primary">Add to favourites</Button>
+       <Button variant="primary">Add to favourites onClick={console.log(recipe.name)}</Button>
     </Card.Body>
 
     </Card>;
