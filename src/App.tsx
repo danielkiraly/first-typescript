@@ -104,10 +104,7 @@ class App extends React.Component{
   handleChange = (selectedItem: { map: (arg0: (r: any) => any) => { join: (arg0: string) => void; }; } | null) => {
     if(selectedItem !== null) {
       let list = selectedItem.map(r => r.value).join('&');
-      this.setState({selectedIngredients: list}, () => {
-        this.fetchData();
-
-      });
+      this.setState({selectedIngredients: list});
     }
   }
 
@@ -126,10 +123,8 @@ class App extends React.Component{
     let resultDiets = selectedDietList.map(r => r).join('&');
     let resultHealth = selectedHealthList.map(r => r).join('&');
     this.setState({selectedDiets: resultDiets}, () => {
-      
     });
     this.setState({selectedHealth: resultHealth}, () => {
-      this.fetchData();
     });
   }
 
@@ -149,9 +144,15 @@ class App extends React.Component{
                       isMulti
                       placeholder={"Search ingredient(s)"}
                       options={this.state.ingredients} 
-                      onChange={this.handleChange.bind(this)}
+                      onChange={this.handleChange}
                       />
-            <Button variant="outline-primary">Search</Button>
+            <Button
+                    variant="outline-primary"
+                    onClick={(event: any) => {
+                      this.fetchData();
+                    }}>
+              Search
+            </Button>
           </Form>
         </Navbar>
       </>
