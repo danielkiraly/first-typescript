@@ -9,8 +9,9 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 interface Ingredient {
@@ -53,16 +54,6 @@ class App extends React.Component{
       {label: "potato", value: "potato"}
     ]
   };
-
-  // componentDidMount() {
-  //   axios.get('https://jsonplaceholder.typicode.com/users')
-  //     .then(results => {
-  //       if (results.data !== undefined) {
-  //       let persons = results.data.map( (res: { name: string; }) => { return { label: res.name, value: res.name}})
-  //       this.setState({ persons });
-  //     }
-  //     })
-  // }
 
   fetchData = () =>{
     let healthToSend;
@@ -131,13 +122,33 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-      <>
-        <Navbar bg="light" variant="light">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar bg="light" variant="light" fixed="top">
+          <Navbar.Brand href="#home">Favourites</Navbar.Brand>
+          <Navbar.Brand href="#home">My shopping list</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <DropdownButton
+              title="Health"
+              variant="secondary"
+              id={`dropdown-variants-health`}
+              key="health"
+            >
+              <Dropdown.Item eventKey="1">Vegan</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Vegetarian</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Sugar-conscious</Dropdown.Item>
+              <Dropdown.Item eventKey="1">Peanut-free</Dropdown.Item>
+              <Dropdown.Item eventKey="1">Tree-nut-free</Dropdown.Item>
+              <Dropdown.Item eventKey="1">Alcohol-free</Dropdown.Item>
+            </DropdownButton>
+            <DropdownButton
+              title="Diet"
+              variant="secondary"
+              id={`dropdown-variants-diet`}
+              key="diet"
+            >
+              <Dropdown.Item eventKey="1">Balanced</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Low fat</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Low carb</Dropdown.Item>
+            </DropdownButton>
           </Nav>
             <Form inline>
           <CreatableSelect
@@ -147,7 +158,7 @@ class App extends React.Component{
                       onChange={this.handleChange}
                       />
             <Button
-                    variant="outline-primary"
+                    variant="outline-dark"
                     onClick={(event: any) => {
                       this.fetchData();
                     }}>
@@ -155,8 +166,8 @@ class App extends React.Component{
             </Button>
           </Form>
         </Navbar>
-      </>
-          
+          <br></br>
+          <br></br>
           <CheckboxContainer doIt={this.doItInApp}/>
           <CardDeck>
             <RecipeList recipes={this.state.recipes}/>

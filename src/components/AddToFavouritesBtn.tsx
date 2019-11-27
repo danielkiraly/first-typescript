@@ -10,14 +10,14 @@ const AddToFavouritesBtn = (recipe: any) => {
             method: 'post',
             url: 'http://localhost:8080/save-to-favourite',
             data: {
-              name: recipe.recipe.name,
-              ingredients: recipe.recipe.ingredients,
-              picture: recipe.recipe.picture,
+              label: recipe.recipe.name,
+              ingredientLines: recipe.recipe.ingredients,
+              image: recipe.recipe.picture,
               url: recipe.recipe.url
             }
           })
           .then((response) => {
-              alert(recipe.recipe.name + " has been saved! ORBÁN A KIRÁLY")
+              alert(recipe.recipe.name + " has been saved!")
           })
     }
 
