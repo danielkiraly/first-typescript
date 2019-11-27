@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import AddToCartButton from './AddToCartButton';
 
 
 interface RecipeListItemProps {
@@ -34,8 +35,7 @@ export const RecipeListItem: React.FC<RecipeListItemProps> = ({ recipe }) => {
         <a href={recipe.url} style={{textDecoration: "none"}}>See the recipe</a>
         <br></br>
         <br></br>
-       <Button variant="light" style={{float: "left", marginLeft: "20%", marginBottom: "2%"}}>
-            <span role="img">🛒</span></Button>
+       <AddToCartButton recipe={recipe} />
        <Button variant="light" style={{float: "right", marginRight: "20%", marginBottom: "2%"}}>❤️</Button>
     </Card.Body>
     </Card>;
