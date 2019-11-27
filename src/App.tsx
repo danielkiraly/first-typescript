@@ -121,10 +121,10 @@ class App extends React.Component{
     let resultDiets = selectedDietList.map(r => r).join('&');
     let resultHealth = selectedHealthList.map(r => r).join('&');
     this.setState({selectedDiets: resultDiets}, () => {
-      this.setState({selectedHealth: resultHealth}, () => {
-        this.fetchData();
-      });
-
+      
+    });
+    this.setState({selectedHealth: resultHealth}, () => {
+      this.fetchData();
     });
   }
 
