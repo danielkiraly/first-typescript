@@ -59,13 +59,15 @@ class App extends React.Component{
   //     })
   // }
 
-  componentDidUpdate(){
+  fetchData = () =>{
     let healthToSend;
     let dietsToSend;
     if(this.state.selectedHealth.length > 0){
+      console.log(this.state.selectedHealth)
       healthToSend = this.state.selectedHealth;
     }
     if(this.state.selectedDiets.length > 0){
+      console.log(this.state.selectedDiets)
       dietsToSend = this.state.selectedDiets;
     }
       axios({
@@ -95,9 +97,11 @@ class App extends React.Component{
   
 
   handleChange = (selectedItem: { map: (arg0: (r: any) => any) => { join: (arg0: string) => void; }; } | null) => {
-    if(selectedItem !== null){
+    if(selectedItem !== null) {
       let list = selectedItem.map(r => r.value).join('&');
       this.setState({selectedIngredients: list}, () => {
+        this.fetchData();
+
       });
     }
   }
@@ -116,8 +120,12 @@ class App extends React.Component{
     }
     let resultDiets = selectedDietList.map(r => r).join('&');
     let resultHealth = selectedHealthList.map(r => r).join('&');
-    this.setState({selectedDiets: resultDiets});
-    this.setState({selectedHealth: resultHealth});
+    this.setState({selectedDiets: resultDiets}, () => {
+      this.setState({selectedHealth: resultHealth}, () => {
+        this.fetchData();
+      });
+
+    });
   }
 
   render(){
