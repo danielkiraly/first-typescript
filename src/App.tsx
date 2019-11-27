@@ -6,6 +6,11 @@ import CreatableSelect from "react-select/creatable";
 import { RecipeList } from './components/RecipeList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardDeck from 'react-bootstrap/CardDeck';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/Form';
 
 
 interface Ingredient {
@@ -99,10 +104,7 @@ class App extends React.Component{
   handleChange = (selectedItem: { map: (arg0: (r: any) => any) => { join: (arg0: string) => void; }; } | null) => {
     if(selectedItem !== null) {
       let list = selectedItem.map(r => r.value).join('&');
-      this.setState({selectedIngredients: list}, () => {
-        this.fetchData();
-
-      });
+      this.setState({selectedIngredients: list});
     }
   }
 
@@ -121,21 +123,40 @@ class App extends React.Component{
     let resultDiets = selectedDietList.map(r => r).join('&');
     let resultHealth = selectedHealthList.map(r => r).join('&');
     this.setState({selectedDiets: resultDiets}, () => {
-      this.setState({selectedHealth: resultHealth}, () => {
-        this.fetchData();
-      });
-
+    });
+    this.setState({selectedHealth: resultHealth}, () => {
     });
   }
 
   render(){
     return (
       <div className="App">
+      <>
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+            <Form inline>
           <CreatableSelect
                       isMulti
+                      placeholder={"Search ingredient(s)"}
                       options={this.state.ingredients} 
-                      onChange={this.handleChange.bind(this)}
+                      onChange={this.handleChange}
                       />
+            <Button
+                    variant="outline-primary"
+                    onClick={(event: any) => {
+                      this.fetchData();
+                    }}>
+              Search
+            </Button>
+          </Form>
+        </Navbar>
+      </>
+          
           <CheckboxContainer doIt={this.doItInApp}/>
           <CardDeck>
             <RecipeList recipes={this.state.recipes}/>
