@@ -11,7 +11,7 @@ const AddToFavouritesBtn = (recipe: any) => {
             url: 'http://localhost:8080/save-to-favourite',
             data: {
               name: recipe.recipe.name,
-              ingredients: recipe.recipe.ingrediens,
+              ingredients: recipe.recipe.ingredients,
               picture: recipe.recipe.picture,
               url: recipe.recipe.url
             }

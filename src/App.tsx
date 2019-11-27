@@ -6,6 +6,11 @@ import CreatableSelect from "react-select/creatable";
 import { RecipeList } from './components/RecipeList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardDeck from 'react-bootstrap/CardDeck';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
+import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/Form';
 
 
 interface Ingredient {
@@ -131,11 +136,26 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
+      <>
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+            <Form inline>
           <CreatableSelect
                       isMulti
+                      placeholder={"Search ingredient(s)"}
                       options={this.state.ingredients} 
                       onChange={this.handleChange.bind(this)}
                       />
+            <Button variant="outline-primary">Search</Button>
+          </Form>
+        </Navbar>
+      </>
+          
           <CheckboxContainer doIt={this.doItInApp}/>
           <CardDeck>
             <RecipeList recipes={this.state.recipes}/>
