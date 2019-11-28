@@ -6,7 +6,7 @@ const AddToFavouritesBtn = (recipe: any) => {
   const addToFavouritesHandler = () => {
     axios({
       method: "post",
-      url: "http://localhost:8080/save-to-favourite",
+      url: "http://localhost:8080/api/favourites",
       data: {
         label: recipe.recipe.label,
         ingredientLines: recipe.recipe.ingredientLines,

@@ -36,6 +36,16 @@ interface MyState {
   recipes: Array<Recipe>;
 }
 
+// interface NavbarProps{
+//   handlePig: (event: string) => void;
+// }
+
+// class Navbar2 extends React.Component<NavbarProps>{
+//   render(){
+//     return <div onClick={() => this.props.handlePig("pork")}>alma</div>
+//   }
+// }
+
 class App extends React.Component {
   state: MyState = {
     selectedDiets: [],
@@ -136,27 +146,12 @@ class App extends React.Component {
           <Navbar.Brand href="/shopping-cart">My shopping list</Navbar.Brand>
           <Nav className="mr-auto">
             <DropdownButton
-              title="Health"
+              title="Filters"
               variant="secondary"
-              id={`dropdown-variants-health`}
-              key="health"
+              id={`dropdown-variants-filters`}
+              key="filters"
             >
-              <Dropdown.Item eventKey="1">Vegan</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Vegetarian</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Sugar-conscious</Dropdown.Item>
-              <Dropdown.Item eventKey="1">Peanut-free</Dropdown.Item>
-              <Dropdown.Item eventKey="1">Tree-nut-free</Dropdown.Item>
-              <Dropdown.Item eventKey="1">Alcohol-free</Dropdown.Item>
-            </DropdownButton>
-            <DropdownButton
-              title="Diet"
-              variant="secondary"
-              id={`dropdown-variants-diet`}
-              key="diet"
-            >
-              <Dropdown.Item eventKey="1">Balanced</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Low fat</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Low carb</Dropdown.Item>
+              <CheckboxContainer doIt={this.doItInApp}/>
             </DropdownButton>
           </Nav>
           <Form inline>
@@ -178,7 +173,6 @@ class App extends React.Component {
         </Navbar>
         <br></br>
         <br></br>
-        <CheckboxContainer doIt={this.doItInApp} />
         <CardDeck>
           <RecipeList recipes={this.state.recipes} />
         </CardDeck>
@@ -189,6 +183,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
+        {/* <Navbar2 handlePig={(event) => this.setState({selectedIngredients: this.state.selectedIngredients.concat([event])})}></Navbar2> */}
           <Route path="/" exact component={this.indexPage} />
           <Route path="/shopping-cart" component={ShoppingCartPage} />
           <Route path="/favourites" component={FavouritePage} />

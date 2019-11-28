@@ -86,8 +86,8 @@ class CheckboxContainer extends React.Component<CheckboxContainerProps, CheckBox
       <>
         {
           this.checkboxes.map(item => (
-            <label key={item.key} style={{ color: 'darkorange', textAlign: 'center', 
-            marginLeft: '1.5%', fontSize: '20px', fontWeight: 'bold'}}>
+            <label key={item.key} style={{
+            marginLeft: '1.5%', fontSize: '19px'}}>
               {item.name}
               <Checkbox 
                         name={item.name} 
