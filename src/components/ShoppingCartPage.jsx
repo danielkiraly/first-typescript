@@ -4,6 +4,9 @@ import { RecipeList } from "src/components/RecipeList";
 import CardDeck from "react-bootstrap/CardDeck";
 import { createGlobalStyle } from "styled-components";
 import Card from "react-bootstrap/Card";
+import { ShoppingCartList } from "./ShoppingCartList";
+import HomeBtn from "./HomeBtn";
+
 
 const ShoppingCartPage = () => {
   useEffect(() => {
@@ -51,9 +54,12 @@ const ShoppingCartPage = () => {
     );
   } else {
     return (
+      <React.Fragment>
+      <HomeBtn />
       <CardDeck>
-        <RecipeList recipes={recipes.length == 0 ? notFoundObject : recipes} />
+        <ShoppingCartList recipes={recipes.length == 0 ? notFoundObject : recipes} />
       </CardDeck>
+      </React.Fragment>
     );
   }
 };
