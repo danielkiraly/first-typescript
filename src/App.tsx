@@ -14,6 +14,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ShoppingCartPage from "./components/ShoppingCartPage";
+import FavouritePage from "./components/FavouritesPage";
 
 interface Ingredient {
   label: string;
@@ -131,7 +132,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Navbar bg="light" variant="light" fixed="top">
-          <Navbar.Brand href="#home">Favourites</Navbar.Brand>
+          <Navbar.Brand href="/favourites">Favourites</Navbar.Brand>
           <Navbar.Brand href="/shopping-cart">My shopping list</Navbar.Brand>
           <Nav className="mr-auto">
             <DropdownButton
@@ -190,6 +191,7 @@ class App extends React.Component {
         <div className="App">
           <Route path="/" exact component={this.indexPage} />
           <Route path="/shopping-cart" component={ShoppingCartPage} />
+          <Route path="/favourites" component={FavouritePage} />
         </div>
       </Router>
     );
