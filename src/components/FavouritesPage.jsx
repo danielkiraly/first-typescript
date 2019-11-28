@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { async } from "q";
-import { RecipeList } from "src/components/RecipeList";
 import CardDeck from "react-bootstrap/CardDeck";
-import { createGlobalStyle } from "styled-components";
 import Card from "react-bootstrap/Card";
+import HomeBtn from "./HomeBtn";
+import FavouriteList from "./FavouriteList"
 
 const FavouritePage = () => {
   useEffect(() => {
@@ -51,9 +51,14 @@ const FavouritePage = () => {
     );
   } else {
     return (
-      <CardDeck>
-        <RecipeList recipes={recipes.length === 0 ? notFoundObject : recipes} />
-      </CardDeck>
+      <React.Fragment>
+        <HomeBtn />>
+        <CardDeck>
+          <FavouriteList
+            recipes={recipes.length === 0 ? notFoundObject : recipes}
+          />
+        </CardDeck>
+      </React.Fragment>
     );
   }
 };
