@@ -15,6 +15,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ShoppingCartPage from "./components/ShoppingCartPage";
 import FavouritePage from "./components/FavouritesPage";
+import LoginPage from "./Auth/LoginPage";
 
 interface Ingredient {
   label: string;
@@ -170,6 +171,9 @@ class App extends React.Component {
               Search
             </Button>
           </Form>
+          <Navbar.Brand href="/login">Login</Navbar.Brand>
+          <Navbar.Brand href="/register">Register</Navbar.Brand>
+
         </Navbar>
         <br></br>
         <br></br>
@@ -187,6 +191,8 @@ class App extends React.Component {
           <Route path="/" exact component={this.indexPage} />
           <Route path="/shopping-cart" component={ShoppingCartPage} />
           <Route path="/favourites" component={FavouritePage} />
+          <Route path="/login" component={LoginPage} />
+
         </div>
       </Router>
     );
