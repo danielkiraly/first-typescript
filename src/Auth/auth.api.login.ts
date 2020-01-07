@@ -5,10 +5,10 @@ export interface Credentials {
     password: string;
 }
 
-export const onRegistration = async (data: Credentials) => {
+export const onLogin = async (data: Credentials) => {
     const requestConfig: AxiosRequestConfig = {
         method: 'post',
-        url: 'http://localhost:8080/auth/registration',
+        url: 'http://localhost:8080/auth/login',
         data
     }
     try {

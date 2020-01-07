@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { AuthForm } from './Auth.components'
-import { onLogin } from './auth.api.login';
+import { onRegistration } from './auth.api';
 
-const LoginPage = () => {
+const RegistrationPage = () => {
 
     const [{username, password}, setCredentials] = useState({
         username: '',
@@ -13,7 +13,7 @@ const LoginPage = () => {
 
     const login = async (event: React.FormEvent) => {
         event.preventDefault();
-        const response = await onLogin({
+        const response = await onRegistration({
             username,
             password
         })
@@ -33,10 +33,10 @@ const LoginPage = () => {
                 username,
                 password: event.target.value
             })} />
-            <button type='submit'>Login</button>
+            <button type='submit'>Register</button>
         {error.length > 0 && <p>{error}</p>}
         </AuthForm>
     )
 }
 
-export default LoginPage;
+export default RegistrationPage;

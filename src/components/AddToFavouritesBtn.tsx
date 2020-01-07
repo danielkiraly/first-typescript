@@ -13,6 +13,7 @@ const AddToFavouritesBtn = (recipe: any) => {
         image: recipe.recipe.image,
         url: recipe.recipe.url
       }
+      
     }).then(response => {
       alert(recipe.recipe.label + " has been saved!");
     });
