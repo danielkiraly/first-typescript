@@ -11,10 +11,13 @@ const FavouritePage = () => {
   }, []);
 
   const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState([]);
 
   const fetchItems = async () => {
     const data = await fetch("http://localhost:8080/api/favourites");
     const recipes = await data.json();
+    const error = await data.status;
+    setError(error)
     setRecipes(recipes);
   };
 
@@ -26,7 +29,7 @@ const FavouritePage = () => {
       url: "/"
     }
   ];
-  if (recipes.length === 0) {
+  if (recipes.error) {
     return (
       <Card
         style={{
@@ -39,7 +42,7 @@ const FavouritePage = () => {
         <Card.Body>
           <br></br>
           <Card.Title style={{ marginTop: "2%" }}>
-            Your don't have a favourite recipe yet. :(
+            <a href={"https://httpstatusdogs.com/" + error}>Error, click for more information!</a>
           </Card.Title>
           <a href="/" style={{ textDecoration: "none" }}>
             Go back

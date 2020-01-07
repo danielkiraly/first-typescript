@@ -8,7 +8,7 @@ export interface Credentials {
 export const onLogin = async (data: Credentials) => {
     const requestConfig: AxiosRequestConfig = {
         method: 'post',
-        url: 'http://localhost:8080/auth/login',
+        url: 'http://localhost:8080/auth/signin',
         data
     }
     try {

@@ -7,17 +7,19 @@ import Card from "react-bootstrap/Card";
 import { ShoppingCartList } from "./ShoppingCartList";
 import HomeBtn from "./HomeBtn";
 
-
 const ShoppingCartPage = () => {
   useEffect(() => {
     fetchItems();
   }, []);
 
   const [recipes, setRecipes] = useState([]);
+  const [error, setError] = useState([]);
 
   const fetchItems = async () => {
     const data = await fetch("http://localhost:8080/api/cart");
+    const error = await data.status;
     const recipes = await data.json();
+    setError(error);
     setRecipes(recipes);
   };
 
@@ -29,7 +31,7 @@ const ShoppingCartPage = () => {
       url: "/"
     }
   ];
-  if (recipes.length == 0) {
+  if (error) {
     return (
       <Card
         style={{
@@ -42,7 +44,9 @@ const ShoppingCartPage = () => {
         <Card.Body>
           <br></br>
           <Card.Title style={{ marginTop: "2%" }}>
-            Your cart is empty:(
+            <a href={"https://httpstatusdogs.com/" + error}>
+              Error, click for more information!
+            </a>
           </Card.Title>
           <a href="/" style={{ textDecoration: "none" }}>
             Go back
@@ -55,10 +59,12 @@ const ShoppingCartPage = () => {
   } else {
     return (
       <React.Fragment>
-      <HomeBtn />
-      <CardDeck>
-        <ShoppingCartList recipes={recipes.length == 0 ? notFoundObject : recipes} />
-      </CardDeck>
+        <HomeBtn />
+        <CardDeck>
+          <ShoppingCartList
+            recipes={recipes.length == 0 ? notFoundObject : recipes}
+          />
+        </CardDeck>
       </React.Fragment>
     );
   }
