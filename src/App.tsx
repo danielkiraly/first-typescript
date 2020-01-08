@@ -39,16 +39,6 @@ interface MyState {
   recipes: Array<Recipe>;
 }
 
-// interface NavbarProps{
-//   handlePig: (event: string) => void;
-// }
-
-// class Navbar2 extends React.Component<NavbarProps>{
-//   render(){
-//     return <div onClick={() => this.props.handlePig("pork")}>alma</div>
-//   }
-// }
-
 class App extends React.Component {
   state: MyState = {
     selectedDiets: [],
@@ -145,8 +135,8 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Navbar bg="light" variant="light" fixed="top">
-          <Navbar.Brand href="/favourites">Favourites</Navbar.Brand>
-          <Navbar.Brand href="/shopping-cart">My shopping list</Navbar.Brand>
+          <Navbar.Brand><Link style={{color: 'grey'}} to="/favourites">Favourites</Link></Navbar.Brand>
+          <Navbar.Brand><Link style={{color: 'grey'}} to="/shopping-cart">My shopping list</Link></Navbar.Brand>
           <Nav className="mr-auto">
             <DropdownButton
               title="Filters"
@@ -173,8 +163,8 @@ class App extends React.Component {
               Search
             </Button>
           </Form>
-          <Navbar.Brand href="/login">Login</Navbar.Brand>
-          <Navbar.Brand href="/registration">Registration</Navbar.Brand>
+          <Navbar.Brand><Link style={{color: 'grey'}} to="/login">Login</Link></Navbar.Brand>
+          <Navbar.Brand><Link style={{color: 'grey'}} to="/registration">Registration</Link></Navbar.Brand>
 
         </Navbar>
         <br></br>
@@ -189,7 +179,6 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-        {/* <Navbar2 handlePig={(event) => this.setState({selectedIngredients: this.state.selectedIngredients.concat([event])})}></Navbar2> */}
           <Route path="/" exact component={this.indexPage} />
           <Route path="/shopping-cart" component={ShoppingCartPage} />
           <Route path="/favourites" component={FavouritePage} />

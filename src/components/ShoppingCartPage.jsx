@@ -6,6 +6,8 @@ import { createGlobalStyle } from "styled-components";
 import Card from "react-bootstrap/Card";
 import { ShoppingCartList } from "./ShoppingCartList";
 import HomeBtn from "./HomeBtn";
+import { Router, Route, Link } from "react-router-dom";
+
 
 const ShoppingCartPage = () => {
   useEffect(() => {
@@ -48,9 +50,9 @@ const ShoppingCartPage = () => {
               Error, click for more information!
             </a>
           </Card.Title>
-          <a href="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             Go back
-          </a>
+          </Link>
           <br></br>
           <br></br>
         </Card.Body>

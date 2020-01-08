@@ -4,6 +4,9 @@ import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import HomeBtn from "./HomeBtn";
 import FavouriteList from "./FavouriteList"
+import { Router, Route, Link } from "react-router-dom";
+
+
 
 const FavouritePage = () => {
   useEffect(() => {
@@ -20,6 +23,8 @@ const FavouritePage = () => {
     setError(error)
     setRecipes(recipes);
   };
+
+  
 
   const notFoundObject = [
     {
@@ -44,9 +49,7 @@ const FavouritePage = () => {
           <Card.Title style={{ marginTop: "2%" }}>
             <a href={"https://httpstatusdogs.com/" + error}>Error, click for more information!</a>
           </Card.Title>
-          <a href="/" style={{ textDecoration: "none" }}>
-            Go back
-          </a>
+          <Link to="/">go back</Link>
           <br></br>
           <br></br>
         </Card.Body>

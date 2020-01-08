@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AuthForm } from './Auth.components'
 import { onLogin } from './auth.api.login';
+import Cookies from 'universal-cookie';
 
 const LoginPage = () => {
 
@@ -8,6 +9,7 @@ const LoginPage = () => {
         username: '',
         password: ''
     })
+
 
     const [error, setError] = useState('')
 
@@ -17,6 +19,7 @@ const LoginPage = () => {
             username,
             password
         })
+    
         if(response && response.error) {
             setError(response.error)
         }

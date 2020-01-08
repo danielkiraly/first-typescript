@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import AddToCartButton from "./AddToCartButton";
 import AddToFavouritesBtn from "./AddToFavouritesBtn";
 import FavouritePage from "./FavouritesPage";
+import { Router, Route, Link } from "react-router-dom";
 
 interface FavouriteListItemProps {
   recipe: {
@@ -15,9 +16,14 @@ interface FavouriteListItemProps {
   };
 }
 
+
+
 export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({
   recipe
 }) => {
+
+  let message = ""
+  
   return (
     <Card
       style={{
@@ -35,8 +41,10 @@ export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({
         />
         <br></br>
         <Card.Title style={{ marginTop: "2%" }}>{recipe.label}</Card.Title>
+        
         <a href={recipe.url} style={{ textDecoration: "none" }}>
-          See the recipe
+          {recipe.url === "/" ? message="go to homepage" : message="see the recipe"}
+          {message}
         </a>
         <br></br>
         <br></br>
