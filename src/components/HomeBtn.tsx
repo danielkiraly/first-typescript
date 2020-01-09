@@ -1,18 +1,15 @@
-import * as React from 'react';
-import Button from 'react-bootstrap/Button'
-
+import * as React from "react";
+import Button from "react-bootstrap/Button";
+import { Router, Route, Link } from "react-router-dom";
 
 class HomeBtn extends React.Component<any> {
-    render() { 
-        return ( 
-            <Button
-                    variant="outline-light"
-                    href='http://localhost:3000'
-            >
-                Home
-            </Button>
-         );
-    }
+  render() {
+    return (
+      <Link to="/">
+        <Button variant="outline-light">Home</Button>
+      </Link>
+    );
+  }
 }
- 
+
 export default HomeBtn;

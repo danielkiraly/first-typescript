@@ -14,9 +14,10 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ShoppingCartPage from "./components/ShoppingCartPage";
-import FavouritePage from "./components/FavouritesPage";
+import FavouritePage from "./components/FavouritePage";
 import RegistrationPage from "./Auth/RegistrationPage";
 import LoginPage from "./Auth/LoginPage";
+import LogOutBtn from "./components/LogOutBtn";
 
 
 interface Ingredient {
@@ -163,8 +164,9 @@ class App extends React.Component {
               Search
             </Button>
           </Form>
-          <Navbar.Brand><Link style={{color: 'grey'}} to="/login">Login</Link></Navbar.Brand>
           <Navbar.Brand><Link style={{color: 'grey'}} to="/registration">Registration</Link></Navbar.Brand>
+          <Navbar.Brand><Link style={{color: 'grey'}} to="/login">Login</Link></Navbar.Brand>
+          <Navbar.Brand><LogOutBtn /></Navbar.Brand>
 
         </Navbar>
         <br></br>

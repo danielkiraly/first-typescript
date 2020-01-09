@@ -15,9 +15,8 @@ export const onLogin = async (data: Credentials) => {
 
   try {
     const response = await Axios.request(requestConfig);
-    console.log(response.data.token);
+    
   } catch (e) {
-    console.log(e);
     return { error: e.response.data.message };
   }
 };

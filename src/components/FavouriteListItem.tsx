@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import AddToCartButton from "./AddToCartButton";
 import AddToFavouritesBtn from "./AddToFavouritesBtn";
-import FavouritePage from "./FavouritesPage";
+import FavouritePage from "./FavouritePage";
 import { Router, Route, Link } from "react-router-dom";
 
 interface FavouriteListItemProps {
@@ -16,14 +16,11 @@ interface FavouriteListItemProps {
   };
 }
 
-
-
 export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({
   recipe
 }) => {
+  let message = "";
 
-  let message = ""
-  
   return (
     <Card
       style={{
@@ -41,11 +38,12 @@ export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({
         />
         <br></br>
         <Card.Title style={{ marginTop: "2%" }}>{recipe.label}</Card.Title>
-        
-        <a href={recipe.url} style={{ textDecoration: "none" }}>
-          {recipe.url === "/" ? message="go to homepage" : message="see the recipe"}
-          {message}
-        </a>
+
+        {recipe.label === "Empty:("
+          ? (message = "asd a")
+          : (message = "see the recipe")}
+        <Link to="/">{message}</Link>
+
         <br></br>
         <br></br>
       </Card.Body>

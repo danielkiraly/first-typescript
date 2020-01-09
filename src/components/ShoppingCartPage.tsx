@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { async } from "q";
-import { RecipeList } from "src/components/RecipeList";
+import { RecipeList } from "components/RecipeList";
 import CardDeck from "react-bootstrap/CardDeck";
 import { createGlobalStyle } from "styled-components";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import { ShoppingCartList } from "./ShoppingCartList";
 import HomeBtn from "./HomeBtn";
 import { Router, Route, Link } from "react-router-dom";
+import Axios from "axios";
+import App from "App";
 
+
+interface Recipe {
+  label: string;
+  image: string;
+  ingredientLines: Array<String>;
+  url: string;
+}
 
 const ShoppingCartPage = () => {
   useEffect(() => {
@@ -17,12 +27,28 @@ const ShoppingCartPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState([]);
 
-  const fetchItems = async () => {
-    const data = await fetch("http://localhost:8080/api/cart");
-    const error = await data.status;
-    const recipes = await data.json();
-    setError(error);
-    setRecipes(recipes);
+  const fetchItems = () => {
+    Axios({
+      method: "get",
+      url: "http://localhost:8080/api/cart"
+    }).then(
+      response => {
+        let recipes = response.data.map((res: any) => {
+          let obj: Recipe = {
+            label: res.label,
+            image: res.image,
+            ingredientLines: res.ingredientLines,
+            url: res.url
+          };
+          return obj;
+        });
+        setRecipes(recipes);
+      },
+      error => {
+        setError(error.response.status);
+        console.log(error);
+      }
+    );
   };
 
   const notFoundObject = [
@@ -35,6 +61,7 @@ const ShoppingCartPage = () => {
   ];
   if (error) {
     return (
+      <React.Fragment>
       <Card
         style={{
           width: "24rem",
@@ -46,17 +73,21 @@ const ShoppingCartPage = () => {
         <Card.Body>
           <br></br>
           <Card.Title style={{ marginTop: "2%" }}>
-            <a href={"https://httpstatusdogs.com/" + error}>
+            <Button
+              variant="danger"
+              href={"https://httpstatusdogs.com/" + error}
+            >
               Error, click for more information!
-            </a>
+            </Button>
           </Card.Title>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            Go back
+          <Link to="/">
+            <Button variant="outline-dark">Home</Button>
           </Link>
           <br></br>
           <br></br>
         </Card.Body>
       </Card>
+      </React.Fragment>
     );
   } else {
     return (

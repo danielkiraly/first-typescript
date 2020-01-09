@@ -1,6 +1,7 @@
 import React from "react";
 import { ShoppingCartListItem } from "./ShoppingCartListItem";
 
+
 interface Recipe {
   label: string;
   image: string;
