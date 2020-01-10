@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 interface Recipe {
   label: string;
   image: string;
-  ingredientLines: Array<String>;
+  ingredients: Array<String>;
   url: string;
 }
 
@@ -24,7 +24,7 @@ const FavouritePage = () => {
     {
       label: "Empty:(",
       image: "",
-      ingredientLines: [],
+      ingredients: [],
       url: "/"
     }
   ];
@@ -42,7 +42,7 @@ const FavouritePage = () => {
           let obj: Recipe = {
             label: res.label,
             image: res.image,
-            ingredientLines: res.ingredientLines,
+            ingredients: res.ingredients,
             url: res.url
           };
           return obj;
@@ -55,7 +55,7 @@ const FavouritePage = () => {
       }
     );
   };
-  if (error) {
+  if (error.length > 0) {
     return (
       <Card
         style={{
@@ -73,6 +73,7 @@ const FavouritePage = () => {
               href={"https://httpstatusdogs.com/" + error}
             >
               Error, click for more information!
+              {console.log(error)}
             </Button>
           </Card.Title>
           <Link to="/">

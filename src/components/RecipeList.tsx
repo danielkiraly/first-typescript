@@ -4,7 +4,7 @@ import { RecipeListItem } from "./RecipeListItem";
 interface Recipe {
   label: string;
   image: string;
-  ingredientLines: Array<String>;
+  ingredients: Array<String>;
   url: string;
 }
 

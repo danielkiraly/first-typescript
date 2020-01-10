@@ -4,7 +4,7 @@ import { FavouriteListItem } from "./FavouriteListItem";
 interface Recipe {
   label: string;
   image: string;
-  ingredientLines: Array<String>;
+  ingredients: Array<String>;
   url: string;
 }
 

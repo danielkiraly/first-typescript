@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { async } from "q";
 import { RecipeList } from "components/RecipeList";
 import CardDeck from "react-bootstrap/CardDeck";
-import { createGlobalStyle } from "styled-components";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { ShoppingCartList } from "./ShoppingCartList";
@@ -12,11 +11,9 @@ import Axios from "axios";
 import App from "App";
 
 
-interface Recipe {
-  label: string;
-  image: string;
-  ingredientLines: Array<String>;
-  url: string;
+interface Ingredient {
+  text: string;
+  weight: string;
 }
 
 const ShoppingCartPage = () => {
@@ -24,8 +21,8 @@ const ShoppingCartPage = () => {
     fetchItems();
   }, []);
 
-  const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState([]);
+  const [ingredients, setIngredients] = useState([])
 
   const fetchItems = () => {
     Axios({
@@ -33,16 +30,14 @@ const ShoppingCartPage = () => {
       url: "http://localhost:8080/api/cart"
     }).then(
       response => {
-        let recipes = response.data.map((res: any) => {
-          let obj: Recipe = {
-            label: res.label,
-            image: res.image,
-            ingredientLines: res.ingredientLines,
-            url: res.url
+        let ingredients = response.data.map((res: any) => {
+          let obj: Ingredient = {
+            text: res.text,
+            weight: res.weight
           };
           return obj;
         });
-        setRecipes(recipes);
+        setIngredients(ingredients);
       },
       error => {
         setError(error.response.status);
@@ -53,13 +48,11 @@ const ShoppingCartPage = () => {
 
   const notFoundObject = [
     {
-      label: "Empty:(",
-      image: "",
-      ingredientLines: [],
-      url: "/"
+      text: "off",
+      weight: "hehh"
     }
   ];
-  if (error) {
+  if (error.length > 0) {
     return (
       <React.Fragment>
       <Card
@@ -95,7 +88,7 @@ const ShoppingCartPage = () => {
         <HomeBtn />
         <CardDeck>
           <ShoppingCartList
-            recipes={recipes.length == 0 ? notFoundObject : recipes}
+            ingredients={ingredients.length == 0 ? notFoundObject : ingredients}
           />
         </CardDeck>
       </React.Fragment>

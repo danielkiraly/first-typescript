@@ -11,7 +11,12 @@ const LogOutBtn = (props: any) => {
           url: "http://localhost:8080/auth/logout"
       })
       .then(
-        props.history.push("/")
+        response => {
+          console.log("anyad");
+        },
+        error => {
+          console.log(error);
+        }
       )
   }  
     return (

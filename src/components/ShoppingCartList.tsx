@@ -2,23 +2,21 @@ import React from "react";
 import { ShoppingCartListItem } from "./ShoppingCartListItem";
 
 
-interface Recipe {
-  label: string;
-  image: string;
-  ingredientLines: Array<String>;
-  url: string;
+interface Ingredient {
+  text: string;
+  weight: string;
 }
 
-interface RecipeListProp {
-  recipes: Array<Recipe>;
+interface IngredientsProp {
+  ingredients: Array<Ingredient>;
 }
 
-export const ShoppingCartList: React.FC<RecipeListProp> = ({ recipes }) => {
+export const ShoppingCartList: React.FC<IngredientsProp> = ({ ingredients }) => {
   return (
     <ul style={{ textAlign: "center" }}>
       {" "}
-      {recipes.map(recipe => {
-        return <ShoppingCartListItem recipe={recipe} />;
+      {ingredients.map(ingredient => {
+        return <ShoppingCartListItem ingredient={ingredient} />;
       })}
     </ul>
   );

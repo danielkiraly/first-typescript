@@ -28,7 +28,7 @@ interface Ingredient {
 interface Recipe {
   label: string;
   image: string;
-  ingredientLines: Array<String>;
+  ingredients: Array<String>;
   url: string;
 }
 
@@ -85,7 +85,7 @@ class App extends React.Component {
           let obj: Recipe = {
             label: res.label,
             image: res.image,
-            ingredientLines: res.ingredientLines,
+            ingredients: res.ingredients,
             url: res.url
           };
           return obj;

@@ -10,7 +10,7 @@ interface RecipeListItemProps {
   recipe: {
     label: string;
     image: string;
-    ingredientLines: Array<String>;
+    ingredients: Array<String>;
     url: string;
   };
 }

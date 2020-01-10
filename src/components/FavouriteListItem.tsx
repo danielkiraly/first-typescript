@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
@@ -11,15 +11,15 @@ interface FavouriteListItemProps {
   recipe: {
     label: string;
     image: string;
-    ingredientLines: Array<String>;
+    ingredients: Array<String>;
     url: string;
   };
 }
 
-export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({
-  recipe
-}) => {
-  let message = "";
+
+export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({recipe}) => {
+
+  const [message, setMessage] = useState();
 
   return (
     <Card
@@ -38,12 +38,7 @@ export const FavouriteListItem: React.FC<FavouriteListItemProps> = ({
         />
         <br></br>
         <Card.Title style={{ marginTop: "2%" }}>{recipe.label}</Card.Title>
-
-        {recipe.label === "Empty:("
-          ? (message = "asd a")
-          : (message = "see the recipe")}
-        <Link to="/">{message}</Link>
-
+        <Card.Link href={recipe.url}>See the recipe</Card.Link>
         <br></br>
         <br></br>
       </Card.Body>

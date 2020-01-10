@@ -10,7 +10,7 @@ const AddToCartButton = props => {
       data: {
         label: props.recipe.label,
         image: props.recipe.image,
-        ingredientLines: props.recipe.ingredientLines,
+        ingredients: props.recipe.ingredients,
         url: props.recipe.url
       }
     });

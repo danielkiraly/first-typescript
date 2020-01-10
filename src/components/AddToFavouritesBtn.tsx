@@ -9,7 +9,7 @@ const AddToFavouritesBtn = (recipe: any) => {
       url: "http://localhost:8080/api/favourites",
       data: {
         label: recipe.recipe.label,
-        ingredientLines: recipe.recipe.ingredientLines,
+        ingredients: recipe.recipe.ingredients,
         image: recipe.recipe.image,
         url: recipe.recipe.url
       }
